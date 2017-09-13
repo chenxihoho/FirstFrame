@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B6420EE-B07E-48DD-8A84-E87A92EA899A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FirstFrame.Dapper</RootNamespace>
+    <AssemblyName>FirstFrame.Dapper</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apache.NMS">
+      <HintPath>..\..\00.Bin\MessageQueue\Apache.NMS.dll</HintPath>
+    </Reference>
+    <Reference Include="Apache.NMS.ActiveMQ">
+      <HintPath>..\..\00.Bin\MessageQueue\Apache.NMS.ActiveMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DapperEx\Attributes\BaseAttribute.cs" />
+    <Compile Include="DapperEx\Attributes\ColumnAttribute.cs" />
+    <Compile Include="DapperEx\Attributes\DatabaseAttribute.cs" />
+    <Compile Include="DapperEx\Attributes\IDAttribute.cs" />
+    <Compile Include="DapperEx\Attributes\ColumnMappingAttribute.cs" />
+    <Compile Include="DapperEx\Attributes\IgnoreAttribute.cs" />
+    <Compile Include="DapperEx\Attributes\OwnerAttribute.cs" />
+    <Compile Include="DapperEx\Attributes\TableAttribute.cs" />
+    <Compile Include="DapperEx\DapperCommon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\CustomDynamicBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\DapperEx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\DbBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\DynamicPropertyModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\ModelDes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\ParamColumnModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\SQL\OperationMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\SQL\QueryOrder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DapperEx\SQL\SqlQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dapper\SqlMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DBHelper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\010.Helpler\LogHelper\LogHelper.csproj">
+      <Project>{856bd1da-be51-432c-91f2-6aa3bd6954df}</Project>
+      <Name>LogHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)bin\$(ConfigurationName)\$(TargetName).dll $(SolutionDir)00.Bin\_Frame\$(TargetFileName)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
