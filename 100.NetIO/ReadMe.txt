@@ -1,0 +1,3 @@
+注意：凡是使用NetIO的项目，必须使用x86编译为32位程序，才能使用异步回调模式
+原因是由于Marshal.GetFunctionPointerForDelegate(Callback)方法，在64位模式下获得的函数指针不能正确的转换为32类型。
+NetIO项目在一个long型参数上，拆分为两个int32在使用，高位用于权限，低位用于回调函数地址，所以导致NetIO只能运行在32位模式下。
