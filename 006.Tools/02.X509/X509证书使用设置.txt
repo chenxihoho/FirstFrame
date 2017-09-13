@@ -1,0 +1,12 @@
+makecert.exe -sr LocalMachine -ss My -a sha1 -n CN=yhAzure.WCF.Server -sky exchange -pe     (服务端证书）
+
+makecert.exe -sr LocalMachine -ss My -a sha1 -n CN=yhAzure.WCF.Client -sky exchange -pe     (客户端证书)
+
+
+1、服务器证书必须位于受信任的根证书颁发机构
+
+2、客户端导入证书时必须连同私钥一起导入，使用X509KeyStorageFlags.PersistKeySet参数
+
+Winhttpcertcfg.exe -i "D:/Advanced/YBZF/_ybzf.Root/_ybzf.Client/ybzfWCFServer.pfx" -c LOCAL_MACHINE/My -a "Network Service"
+WinHttpCertCfg.exe -g -c Current_User/Root -s ybzfWCFServer -a "Network Service"
+WinHttpCertCfg.exe -g -c LOCAL_MACHINE\MY -s ybzfWCFServer -a "Network Service"
